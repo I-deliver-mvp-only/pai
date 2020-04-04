@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <metachar set="utf-8" />
+    <title>jQuery</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('td').one('click', edit);
+
+            $('button').bind('asdf', function() { alert('Asdf!'); });
+
+            $('*').unbind();
+        });
+
+        function edit() {
+            var row = $(this);
+            row.html('<input id="edit" value="' + row.text() + '">');
+            $('#edit').blur(function() {
+                row.text($(this).val());
+                row.one('click', edit);
+            }).focus();
+            $('button').trigger('asdf');
+        }
+    </script>
+</head>
+
+<body>
+
+<table>
+    <tr>
+        <td>Wlazł</td>
+    </tr>
+    <tr>
+        <td>kotek</td>
+    </tr>
+    <tr>
+        <td>na</td>
+    </tr>
+    <tr>
+        <td>...</td>
+    </tr>
+</table>
+<button>Some button</button>
+
+</body>
+
+</html>
