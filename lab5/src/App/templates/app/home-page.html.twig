@@ -1,0 +1,36 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}RTV Shop|Home{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/static/css/product-item.css">
+    <link rel="stylesheet" href="/static/css/home-page.css">
+{% endblock %}
+
+{% block content %}
+    <header>
+        <div class="top-bar">
+            <div>
+                <button class="go-to-cart-btn"><i class="fas fa-shopping-cart"></i></button>
+                <span class="cart-products-count">{{ cartProductsNumber }}</span>
+            </div>
+        </div>
+    </header>
+    <div class="items-grid">
+        {% for item in items %}
+            {% include '@app/product-item.html.twig' %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="/static/js/product-item-animations.js"></script>
+    <script src="/static/js/products.js"></script>
+    <script>
+        productItemAnimations.init();
+        products.initProductsAddToCartClick();
+        products.initGoToCartClick();
+    </script>
+{% endblock %}

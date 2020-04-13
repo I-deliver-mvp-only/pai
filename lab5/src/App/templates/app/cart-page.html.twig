@@ -1,0 +1,53 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}RTV Shop|Cart{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/static/css/cart.css">
+    <link rel="stylesheet" href="/static/css/product-item.css">
+{% endblock %}
+
+{% block content %}
+    <div class="cart-content">
+        {% if products|length == 0 %}
+            <h1>Cart is empty...</h1>
+            <div class="cart-buttons-flex">
+                <button class="back-shopping-btn button button-3d button-action button-rounded">Go back shopping
+                </button>
+            </div>
+        {% else %}
+            <h1>Products in the cart</h1>
+            <ul class="cart-products">
+                {% for product in products %}
+                    <li class="cart-product">
+                        <div class="item-data">
+                            <span class="item-id">{{ product.id }}</span>
+                            <span class="item-title">{{ product.name }}</span><br>
+                            <span class="item-price">${{ product.price }}</span>
+                        </div>
+                        <div>
+                            <img class="cart-product-img" src="{{ product.imgUrl }}">
+                            <button class="remove-from-cart-btn"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="cart-buttons-flex">
+                <button class="back-shopping-btn button button-3d button-action button-rounded">Go back shopping
+                </button>
+                <button class="purchase-btn button button-3d button-primary button-rounded">Finalize purchase</button>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="/static/js/cart.js"></script>
+    <script>
+        cart.initBackShoppingClick();
+        cart.initPurchaseClick();
+        cart.initRemoveFromCartClick();
+    </script>
+{% endblock %}

@@ -1,0 +1,12 @@
+<div class="item-wrapper" {% if item.inCart is defined %}disabled{% endif %}>
+    <div class="item-view">
+        <img class="item-img" src="{{ item.imgUrl }}">
+        <button class="add-to-cart-btn button button-block button-highlight button-large">Add to cart</button>
+    </div>
+    <span class="item-id">{{ item.id }}</span>
+    <div class="item-data">
+        <span class="item-title">{{ item.name }}</span><br>
+        <span class="item-price">${{ item.price }}</span>
+    </div>
+    <div class="disabled-item-cover"></div>
+</div>

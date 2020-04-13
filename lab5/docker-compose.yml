@@ -1,0 +1,28 @@
+version: '3.0'
+services:
+  web:
+    build: docker/web
+    image: lab5_web
+    container_name: web
+    depends_on:
+      - db
+    ports:
+      - ${WEB_PORT}:${WEB_PORT}
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    command: sh -c "composer install -q
+      && echo 'Start listening on port ${WEB_PORT}...'
+      && php -S 0.0.0.0:${WEB_PORT} -t public"
+  db:
+    image: mariadb
+    container_name: db
+    ports:
+      - 3306:3306
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=lab5
+volumes:
+  db_data:

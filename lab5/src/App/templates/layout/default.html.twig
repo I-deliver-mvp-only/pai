@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="eg">
+
+<head>
+    <title>{% block title %}RTV Shop{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+
+    {% block stylesheet %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+        <link rel="stylesheet" href="/static/css/global.css">
+        <link rel="stylesheet" href="/static/lib/buttons/buttons.min.css">
+    {% endblock %}
+</head>
+
+<body>
+{% block content %}{% endblock %}
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% endblock %}
+</body>
+
+</html>
