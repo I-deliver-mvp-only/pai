@@ -1,0 +1,26 @@
+﻿@{ 
+    List<String> rules = (Session["rules"] == null) ? new List<String>() : (List<String>)Session["rules"];
+    if (!String.IsNullOrEmpty(Request["rule"])) {
+        rules.Add(Request["rule"]);
+        Session.Add("rules", rules);
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <form action="" method="POST">
+        <input type="text" name="rule" />
+        <button type="submit">Submit</button>
+    </form>
+    Rules:<br>
+    <ol>
+        @foreach (var rule in rules) {
+           <li>@rule</li>
+        }
+    </ol>
+</body>
+</html>
